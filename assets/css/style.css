@@ -1,0 +1,22 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    max-width: 800px;
+    margin:auto;
+    /* background-color: rgb(250, 247, 244); */
+}
+
+#header-left{
+    display: inline-block;
+    float: left;
+    padding-left: 5px;
+
+}
+
+#header-right{
+    display: inline-block;
+    float: right;
+    padding-right: 10px;
+}

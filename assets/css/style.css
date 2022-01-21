@@ -2,8 +2,16 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+h1{
+    margin:0px;
+    padding:0px;
+}
+h2{
+    font-size: 16px;
+}
+
 body{
-    max-width: 800px;
+    max-width: 1000px;
     margin:auto;
     /* background-color: rgb(250, 247, 244); */
 }
@@ -12,11 +20,92 @@ body{
     display: inline-block;
     float: left;
     padding-left: 5px;
-
 }
 
 #header-right{
     display: inline-block;
     float: right;
     padding-right: 10px;
+}
+
+main{
+    clear:both;
+    /* margin:auto; */
+    /* background-color: rgb(250, 247, 244);    */
+    /* background-color: blue; */
+}
+
+section{
+    /* background-color: crimson; */
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+}
+
+#top-section{
+    padding-top: 50px;
+}
+
+#mid-section{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#intro-text{
+    margin:auto;
+    max-width: 75%;
+    font-size: 14px;
+}
+#bot-section{
+    padding-bottom: 20px;
+}
+
+ul{
+    display:inline;
+    margin: 0px;
+    padding: 0px;
+}
+
+li{
+    /* display:list-item; */
+    display: none;
+    width: fit-content;
+    word-break: break-all;
+    background-color: darkslateblue;
+    color: white;
+    border-radius: 3px;
+    min-width: 25px;
+    list-style-type: none;
+    margin: 3px;
+    padding: 4px;
+    text-align: left;
+}
+
+
+#start-game:hover,
+li:hover{
+    background-color:rgb(136, 130, 175);
+    border-color: rgb(136, 130, 175);
+}
+
+#card-1{
+    /* display:inline-block; */
+    /* max-width: 50%; */
+
+    /* margin-left: auto;
+    margin-right:auto; */
+}
+
+#start-game{
+    background-color: darkslateblue;
+    color: white;
+    border-radius: 3px;
+    padding: 4px;
+    border-style: solid;
+    border-color: darkslateblue;
+}
+
+#answer-text{
+    display:none;
+    text-align: left;
 }

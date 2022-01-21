@@ -45,7 +45,7 @@ Root Directory
 
 The following image shows a screenshot of the website homepage:
 
-![Layout screenshot of the website showing sections](./git-images/screenshot.png)
+![Layout screenshot of the website showing sections](./git-images/screenshot1.png)
 
 ## Revision History 
 

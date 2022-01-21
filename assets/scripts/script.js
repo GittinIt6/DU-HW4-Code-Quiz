@@ -6,6 +6,8 @@ let answerBtn3 = document.getElementById("card-3");
 let resultText = document.getElementById("answer-text");
 let resultArea = document.getElementById("bot-section");
 let timerValue = document.getElementById("timer");
+let thisScore = 0;
+let gameIsOver = false;
 let randQuestion = "No question generated.";
 let questionsAsked = [];
 let identifier = 0;
@@ -82,7 +84,7 @@ function startGame(){
 }
 
 function countdown() {
-    var timeRemaining = 10;
+    var timeRemaining = 30;
   
     var timeInterval = setInterval(function () {
       if (timeRemaining > 0) {
@@ -104,6 +106,9 @@ function generateQuestion(){
         console.log("questions asked array is = " + questionsAsked);
         if (questionsAsked.includes(identifier) === false && questionsAsked.length !== questionDB.length){
             questionsAsked.push(identifier);
+            if (questionsAsked.length == questionDB.length){
+              gameIsOver = true;
+            }
             console.log(identifier + " pushed to questions asked. Questions asked is now = " + questionsAsked + " and QA.length is: " + questionsAsked.length + " and questionDB.length is: " + questionDB.length);
             return randQuestion;
         }
@@ -111,15 +116,18 @@ function generateQuestion(){
             generateQuestion();
         }
         else{
-            randQuestion = "End of Questions";
+          gameOver();
+          // randQuestion = "End of Questions";
+          return;
         }
 
-    // return randQuestion;
+    return randQuestion;
 }
 
 function renderAnswers(){
     for (let index = 0; index < 4; index++) {
-        document.getElementById("card-" + [index]).innerHTML=questionDB[identifier].choices[index];  
+        document.getElementById("card-" + [index]).innerHTML=questionDB[identifier].choices[index];
+        document.getElementById("card-" + [index]).style.backgroundColor = "darkslateblue"; 
     };
     
 }
@@ -131,37 +139,37 @@ function nextQuestion(){
 }
 
 
-function wait(){
-console.log('supposed to be waiting');
-    var timeLeft = 5;
-    var timeWaiting = setInterval(function () {
-        if (timeLeft > 0) {
-          timeLeft--;
-        } else {
-          clearInterval(timeWaiting);
-          return;
-        }
-      }, 1000);
-}
+// function wait(){
+// console.log('supposed to be waiting');
+//     var timeLeft = 5;
+//     var timeWaiting = setInterval(function () {
+//         if (timeLeft > 0) {
+//           timeLeft--;
+//         } else {
+//           clearInterval(timeWaiting);
+//           console.log("done waiting");
+//           return;
+//         }
+//       }, 1000);
+// }
 
 function userSelectedAnswer0(){
     answerBtn0.removeEventListener("click", userSelectedAnswer0);
     answerBtn1.removeEventListener("click", userSelectedAnswer1);
     answerBtn2.removeEventListener("click", userSelectedAnswer2);
     answerBtn3.removeEventListener("click", userSelectedAnswer3);
-  if (answerBtn0.innerHTML == questionDB[identifier].choices[questionDB[identifier].answer]){
-    this.style.backgroundColor = "green";
-    correctAnswer();
+  if (gameIsOver !== true){
+    if (answerBtn0.innerHTML == questionDB[identifier].choices[questionDB[identifier].answer]){
+      this.style.backgroundColor = "green";
+      correctAnswer();
+      setTimeout(nextQuestion, 1.0*1000);
+    }
+    else {
+      this.style.backgroundColor = "red";
+      incorrectAnswer();
+      setTimeout(nextQuestion, 1.0*1000);
+    }
   }
-  else {
-    this.style.backgroundColor = "red";
-    incorrectAnswer();
-  }
-
-  wait();
-  nextQuestion();
-  this.style.backgroundColor = "darkslateblue";
-
 };
 
 function userSelectedAnswer1(){
@@ -172,12 +180,12 @@ function userSelectedAnswer1(){
     if (answerBtn1.innerHTML == questionDB[identifier].choices[questionDB[identifier].answer]){
         this.style.backgroundColor = "green";
         correctAnswer();
-        wait();
+        setTimeout(nextQuestion, 1.0*1000);
       }
       else {
         this.style.backgroundColor = "red";
         incorrectAnswer();
-        wait();
+        setTimeout(nextQuestion, 1.0*1000);
       }
 };
 function userSelectedAnswer2(){
@@ -188,10 +196,12 @@ function userSelectedAnswer2(){
     if (answerBtn2.innerHTML == questionDB[identifier].choices[questionDB[identifier].answer]){
         this.style.backgroundColor = "green";
         correctAnswer();
+        setTimeout(nextQuestion, 1.0*1000);
       }
       else {
         this.style.backgroundColor = "red";
         incorrectAnswer();
+        setTimeout(nextQuestion, 1.0*1000);
       }
 };
 function userSelectedAnswer3(){
@@ -202,10 +212,12 @@ function userSelectedAnswer3(){
     if (answerBtn3.innerHTML == questionDB[identifier].choices[questionDB[identifier].answer]){
         this.style.backgroundColor = "green";
         correctAnswer();
+        setTimeout(nextQuestion, 1.0*1000);
       }
       else {
         this.style.backgroundColor = "red";
         incorrectAnswer();
+        setTimeout(nextQuestion, 1.0*1000);
       }
 };
 
@@ -228,7 +240,13 @@ return;
 };
 
 function gameOver(){
-
+  for (let i = 0; i < 4; i++) {
+    document.getElementById("card-" + [i]).style.display="none";
+}
+  startGameBtn.style.display="inline";
+  resultText.innerHTML="";
+  resultArea.style.borderTop = "none";
+  document.getElementById("question").innerHTML="This Game Score: "
 }
 
 function reAddListners(){
